@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checking Code') {
+            steps {
+                echo 'Checking code from GitHub'
+                //git branch: 'main', credentialsId: 'jenkins-github-token', url: 'https://github.com/kss7/ContinuousTesting.git'
+                sh returnStatus: true, script: 'ls -l'
+            }
+        }
+        stage('Test Automation') {
+            steps {
+                echo 'Running Automation tests'
+                sh returnStatus: true, script: 'bash testscript.sh'
+
+            }
+        }
+        stage('Test Reporting') {
+            steps {
+                echo 'Reporting tests'
+                junit allowEmptyResults: true, skipMarkingBuildUnstable: true, testResults: 'xmlReport/output.xml'
+
+            }
+        }
+    }
+}
