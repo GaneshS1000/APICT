@@ -24,7 +24,7 @@ which python
 pip install -r ./requirements.txt
 
 echo '###### Running API Tests#####'
-pytest APIPetstoreTests --junitxml=./xmlReport/output.xml
+pytest APIPetstoreTests --alluredir=./allure_results --junitxml=./xmlReport/output.xml
 
 echo '## deactivate venv ##'
 deactivate
