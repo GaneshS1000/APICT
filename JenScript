@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Verifying Check Out'
+                sh returnStatus: true, script: 'ls -l'
+            }
+        }
+        stage('executing tests') {
+            steps {
+                echo 'executing tests'
+                sh returnStatus: true, script: 'chmod a+x ./testscript.sh'
+                sh returnStatus: true, script: './testscript.sh'
+                junit allowEmptyResults: true, stdioRetention: '', testResults: 'xmlReport/output.xml'
+            }
+        }
+    }
+
+}
+
