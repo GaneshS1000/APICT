@@ -11,7 +11,7 @@ fi
 pyenv versions
 
 #Enable reqd python from pyenv
-pyenv global 3.10.11
+pyenv global 3.11.10
 python -m venv myenv
 source myenv/bin/activate
 python -V
